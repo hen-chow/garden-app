@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require materialize
 //= require_tree .
+
+$(document).ready(function(){
+  $(".button-collapse").sideNav();
+})
