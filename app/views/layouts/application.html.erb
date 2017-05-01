@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project3</title>
+    <title>Garden App</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,6 +9,8 @@
   </head>
 
   <body>
+    <%= render "includes/navigation" %>
     <%= yield %>
+    <%= render "includes/footer" %>
   </body>
 </html>
