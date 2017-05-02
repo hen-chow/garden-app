@@ -92,5 +92,15 @@ $(document).ready(function(){
     var searchTerm = $("#plant-name").val();
 
     fetchData(searchTerm);
+
   });
+
+  $("#tomato-container").on("click", function(){
+    var $plantContainer = $("#tomato-container");
+    $plantContainer.css({
+      position: "absolute"
+    });
+    $plantContainer.draggable(); // jquery draggable function to make the plant draggable
+  })
+
 })
