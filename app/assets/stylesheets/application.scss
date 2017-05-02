@@ -10,10 +10,13 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
+ *= require jquery-ui.min
+ *= require jquery.gridly
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
+
 @import "materialize/components/color";
 $primary-color: color("blue", "lighten-2") !default;
 $secondary-color: color("yellow", "base") !default;
@@ -24,6 +27,22 @@ $secondary-color: color("yellow", "base") !default;
 $primary-color: color("green", "accent-3");
 $secondary-color: color("grey", "lighten-2");
 $accent-color: color("deep purple", "darken-4");
+
+.gridly {
+  position: relative;
+  width: 500px;
+  background-color: $accent-color;
+}
+.brick.small {
+  width: 100px;
+  height: 100px;
+  background-color: $primary-color;
+}
+.brick.large {
+  width: 200px;
+  height: 200px;
+  background-color: $secondary-color;
+}
 
 body {
   display: flex;
@@ -61,7 +80,7 @@ main {
 }
 
 // canvas {
-//   position: relative;
+//   position: absolute;
 // }
 
 .plant-icon {

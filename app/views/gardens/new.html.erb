@@ -1,8 +1,15 @@
 <div class="container">
   <h2 class="header center green-text text-accent-3">Design your dream garden</h2>
-  <p>Before canvas.</p>
   <div>
     <div id="canvas">
+      <div class="gridly">
+        <div class="brick small"></div>
+        <div class="brick small"></div>
+        <div class="brick large"></div>
+        <div class="brick small"></div>
+        <div class="brick small"></div>
+        <div class="brick large"></div>
+      </div>
     <!-- <div class="col s12 m8 l9"> <! Note that "m8 l9" was added -->
       <!-- canvas page content
 
@@ -10,7 +17,8 @@
         9-columns-wide on large screens,
         8-columns-wide on medium screens,
         12-columns-wide on small screens  -->
-      <canvas></canvas>
+      <canvas>
+      </canvas>
     </div>
       <!-- Grey navigation panel
 
@@ -19,48 +27,45 @@
         4-columns-wide on medium screens,
         12-columns-wide on small screens  -->
 
-      <div id="accordion">
-        <h5 id="size-heading">Garden Size<i class="material-icons prefix right">settings</i></h5>
-        <div id="size-input">
-          <p>Enter the dimensions of your garden here</p>
-          <div class="input-field">
-            <input type="text" id="height" />
-            <label for="height">Height</label>
-          </div>
-          <div class="input-field">
-            <input type="text" id="width" />
-            <label for="width">Width</label>
-          </div>
-          <div class="input-field center">
-            <button id="draw-canvas" class="btn waves-effect waves-light green accent-3">Create</button>
-          </div>
+    <div id="accordion">
+      <h5 id="size-heading">Garden Size<i class="material-icons prefix right">settings</i></h5>
+      <div id="size-input">
+        <p>Enter the dimensions of your garden here</p>
+        <div class="input-field">
+          <input type="text" id="height" />
+          <label for="height">Height</label>
         </div>
-
-        <h5 id="plant-heading">Pick Your Plants<i class="material-icons prefix right">settings</i></h5>
-        <div id="plant-input">
-          <p>Enter the plant name here</p>
-          <div class="input-field">
-            <input type="text" id="plant-name" />
-            <label for="plant-name">Name</label>
-          </div>
-          <div class="input-field center">
-            <button id="plant-search" class="btn waves-effect waves-light green accent-3">Search</button>
-          </div>
-          <div id="plant-details"></div>
+        <div class="input-field">
+          <input type="text" id="width" />
+          <label for="width">Width</label>
         </div>
-
-        <h5 id="plant-info">Plant Selector<i class="material-icons prefix right">settings</i></h5>
-        <div>
-          <div id="tomato-container">
-            <%= image_tag "Tomato-48.png", class: "plant-icon"%>
-          </div>
-          <%= image_tag "Cherry-48.png", class: "plant-icon"%>
-          <%= image_tag "Grass-48.png", class: "plant-icon"%>
-          <%= image_tag "Strawberry-48.png", class: "plant-icon"%>
+        <div class="input-field center">
+          <button id="draw-canvas" class="btn waves-effect waves-light green accent-3">Create</button>
         </div>
       </div>
 
+      <h5 id="plant-heading">Pick Your Plants<i class="material-icons prefix right">settings</i></h5>
+      <div id="plant-input">
+        <p>Enter the plant name here</p>
+        <div class="input-field">
+          <input type="text" id="plant-name" />
+          <label for="plant-name">Name</label>
+        </div>
+        <div class="input-field center">
+          <button id="plant-search" class="btn waves-effect waves-light green accent-3">Search</button>
+        </div>
+        <div id="plant-details"></div>
+      </div>
 
+      <h5 id="plant-info">Plant Selector<i class="material-icons prefix right">settings</i></h5>
+      <div>
+        <div id="tomato-container">
+          <%= image_tag "Tomato-48.png", class: "plant-icon"%>
+        </div>
+        <%= image_tag "Cherry-48.png", class: "plant-icon"%>
+        <%= image_tag "Grass-48.png", class: "plant-icon"%>
+        <%= image_tag "Strawberry-48.png", class: "plant-icon"%>
+      </div>
+    </div>
   </div>
-  <p>After canvas.</p>
 </div>

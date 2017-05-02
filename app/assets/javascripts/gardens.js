@@ -74,6 +74,23 @@ var drawCanvas = function(w, h){
   }
 }
 
+// var createGrid = function () {
+//     var options = {
+//         cellHeight: 80,
+//         verticalMargin: 10
+//     };
+//     $('.grid-stack').gridstack(options);
+// };
+
+var createGrid = function(){
+  $('.gridly').gridly({
+    base: 60, // px
+    gutter: 20, // px
+    columns: 12
+  });
+}
+
+
 $(document).ready(function(){
 
   $("#draw-canvas").on("click", function(){
@@ -102,5 +119,7 @@ $(document).ready(function(){
     });
     $plantContainer.draggable(); // jquery draggable function to make the plant draggable
   })
+
+  createGrid();
 
 })
