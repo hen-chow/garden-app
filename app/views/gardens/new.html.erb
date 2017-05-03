@@ -2,30 +2,17 @@
   <h2 class="header center green-text text-accent-3">Design your dream garden</h2>
   <div>
     <div id="canvas">
-      <div class="gridly">
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-        <div class="brick small"></div>
-      </div>
-    <!-- <div class="col s12 m8 l9"> <! Note that "m8 l9" was added -->
+      <canvas id="garden-plan"></canvas>
+      <!-- <div class="col s12 m8 l9"> <! Note that "m8 l9" was added -->
       <!-- canvas page content
 
             This content will be:
         9-columns-wide on large screens,
         8-columns-wide on medium screens,
         12-columns-wide on small screens  -->
-      <canvas>
-      </canvas>
+    </div>
+    <div id="box">
+      <h5>Planting Box</h5>
     </div>
       <!-- Grey navigation panel
 
@@ -33,46 +20,51 @@
         3-columns-wide on large screens,
         4-columns-wide on medium screens,
         12-columns-wide on small screens  -->
-
-    <div id="accordion" class="side-nav-card">
-      <h5 id="size-heading">Garden Size<i class="material-icons prefix right">settings</i></h5>
-      <div id="size-input">
-        <p>Enter the dimensions of your garden here</p>
-        <div class="input-field">
-          <input type="text" id="height" />
-          <label for="height">Height</label>
+    <div id="panel">
+      <ul class="collapsible" data-collapsible="accordion">
+       <li>
+         <div class="collapsible-header"><i class="material-icons">filter_drama</i>Garden Size</div>
+         <div class="collapsible-body">
+           <span>
+             <p>Enter the dimensions of your garden here</p>
+             <div class="input-field">
+               <input type="text" id="height" />
+               <label for="height">Height</label>
+             </div>
+             <div class="input-field">
+               <input type="text" id="width" />
+               <label for="width">Width</label>
+             </div>
+             <div class="input-field center">
+               <button id="draw-canvas" class="btn waves-effect waves-light green accent-3">Create</button>
+             </div>
+           </span>
+         </div>
+       </li>
+       <li>
+         <div class="collapsible-header"><i class="material-icons">place</i>Search for a Plant</div>
+         <div class="collapsible-body">
+          <span>
+            <p>Enter the plant name here</p>
+            <div class="input-field">
+              <input type="text" id="plant-name" />
+              <label for="plant-name">Name</label>
+            </div>
+            <div class="input-field center">
+              <button id="plant-search" class="btn waves-effect waves-light green accent-3">Search</button>
+            </div>
+          </span>
         </div>
-        <div class="input-field">
-          <input type="text" id="width" />
-          <label for="width">Width</label>
+       </li>
+       <li>
+         <div class="collapsible-header"><i class="material-icons">whatshot</i>Search Results</div>
+         <div class="collapsible-body">
+          <span>
+            <div id="plant-details"></div>
+          </span>
         </div>
-        <div class="input-field center">
-          <button id="draw-canvas" class="btn waves-effect waves-light green accent-3">Create</button>
-        </div>
-      </div>
-
-      <h5 id="plant-heading">Pick Your Plants<i class="material-icons prefix right">settings</i></h5>
-      <div id="plant-input">
-        <p>Enter the plant name here</p>
-        <div class="input-field">
-          <input type="text" id="plant-name" />
-          <label for="plant-name">Name</label>
-        </div>
-        <div class="input-field center">
-          <button id="plant-search" class="btn waves-effect waves-light green accent-3">Search</button>
-        </div>
-        <div id="plant-details"></div>
-      </div>
-
-      <h5 id="plant-info">Plant Selector<i class="material-icons prefix right">settings</i></h5>
-      <div>
-        <div id="tomato-container">
-          <%= image_tag "Tomato-48.png", class: "plant-icon"%>
-        </div>
-        <%= image_tag "Cherry-48.png", class: "plant-icon"%>
-        <%= image_tag "Grass-48.png", class: "plant-icon"%>
-        <%= image_tag "Strawberry-48.png", class: "plant-icon"%>
-      </div>
-    </div>
+       </li>
+     </ul>
+   </div>
   </div>
 </div>

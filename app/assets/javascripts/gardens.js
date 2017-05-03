@@ -39,25 +39,8 @@ var fetchData = function(term){
   });
 }
 
-// var data = response['data']['attributes']; // or whatever
-//
+// create results table
 var $table = $('<table>');
-//
-// var $tr;
-// var $label;
-// var $val;
-//
-// if( data['sun_requirements'].length ){
-//
-//   $tr = $('<tr>');
-//   $label = $('<td class="label">').html( 'Sun Requirements' );
-//   $val = $('<td class="value">').html( data['sun_requirements'] );
-//   $tr.append($label).append($val);
-//   $table.append($tr);
-//
-// }
-//
-// $('#output').append($table); // or whatever
 
 // select data with images
 var selectData = function(response) {
@@ -95,6 +78,7 @@ var displayData = function(response){
     $tr = $('<tr>');
     $label = $('<td class="label">').html( 'Name' );
     $val = $('<td class="value">').html( details.name );
+    $tr.css("fontWeight", "bold");
     $tr.append($label).append($val);
     $table.append($tr);
 
@@ -102,7 +86,7 @@ var displayData = function(response){
     if (details.height != null && details.height != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Height' );
-      $val = $('<td class="value">').html( details.height );
+      $val = $('<td class="value">').html( details.height + " cm");
       $tr.append($label).append($val);
       $table.append($tr);
     }
@@ -111,7 +95,16 @@ var displayData = function(response){
     if (details.row_spacing != null && details.row_spacing != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Row Spacing' );
-      $val = $('<td class="value">').html( details.row_spacing );
+      $val = $('<td class="value">').html( details.row_spacing + " cm");
+      $tr.append($label).append($val);
+      $table.append($tr);
+    }
+
+    // print plant spread
+    if (details.spread != null && details.spread != ""){
+      $tr = $('<tr>');
+      $label = $('<td class="label">').html( 'Spread' );
+      $val = $('<td class="value">').html( details.spread + " cm");
       $tr.append($label).append($val);
       $table.append($tr);
     }
@@ -128,13 +121,21 @@ var displayData = function(response){
     if (details.main_image_path != null && details.main_image_path != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Image' );
-      $val = $('<td class="value">')
-      $image = $('<img>').attr( "src", details.main_image_path);
+      $val = $('<td class="value">');
+      // $imgContainer = $('<div>');
+      $image = $('<img>').attr( "src", details.main_image_path).attr("name", details.name).attr("id", "plant-img");
       $image.css({
         width: "50px",
         height: "50px"
       });
-      $val.append($image);
+      // $button = $('<button>').addClass("btn-floating btn-large waves-effect waves-light green accent-3").html("<i class='material-icons'>add</i>");
+      $button = $('<button>').addClass("waves-effect waves-teal btn-flat").text("+ add to my plant box")
+      $button.attr({
+        src: details.main_image_path,
+        name: details.name,
+        id: "plant-select-button"
+      });
+      $val.append($image).append($button);
       $tr.append($label).append($val);
       $table.append($tr);
     }
@@ -142,7 +143,6 @@ var displayData = function(response){
     $("#plant-details").append($table);
   });
 }
-
 
 // draw the garden canvas based on user entry
 var drawCanvas = function(w, h){
@@ -168,18 +168,18 @@ var drawCanvas = function(w, h){
   }
 }
 
-var createGrid = function(){
-  $('.gridly').gridly({
-    base: 80, // px
-    gutter: 20, // px
-    columns: 8
+// create brick of image when event handler clicked
+var createBrick = function(src, name){
+  $brick = $("<div>").addClass("brick small").css("display", "absolute");
+  $img = $("<img>").attr("src", src).attr("name", name);
+  $brick.append($img);
+  $brick.draggable({
+    snap: true,
+    containment: "#garden-plan", 
+    scroll: false
   });
-
-  $('.gridly').css({
-    backgroundColor: "red"
-  });
+  $("#box").append($brick);
 }
-
 
 $(document).ready(function(){
 
@@ -191,25 +191,36 @@ $(document).ready(function(){
 
     $("#height").val("");
     $("#width").val("");
+    $('.collapsible').collapsible('open', 1); // close current tab to open the next tab
+
   });
 
-  $("#accordion").accordion(); // jquery accordion function to make collapsible
-
+  // get search results from api
   $("#plant-search").on("click", function(){
     var searchTerm = $("#plant-name").val();
 
     fetchData(searchTerm);
 
+    $("#plant-name").val(""); // clear the search input field
+    $('#plant-details table').html(""); // clear the results table before entering new search results
+    $('.collapsible').collapsible('open', 2);
+
   });
 
-  $("#tomato-container").on("click", function(){
-    var $plantContainer = $("#tomato-container");
-    $plantContainer.css({
-      position: "absolute"
-    });
-    $plantContainer.draggable(); // jquery draggable function to make the plant draggable
+  // click on result image handler
+  $(document).on("click", "img", function(){
+    var img_src = $(this).attr("src");
+    var name = $(this).attr("name");
+
+    createBrick(img_src, name);
   })
 
-  createGrid();
+  // click on result button handler
+  $(document).on("click", "button#plant-select-button", function(){
+    var img_src = $(this).attr("src");
+    var name = $(this).attr("name");
+
+    createBrick(img_src, name);
+  })
 
 })

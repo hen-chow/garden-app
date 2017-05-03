@@ -13,11 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize
-//= require jquery.gridly
 //= require_tree .
 
 $(document).ready(function(){
   $(".button-collapse").sideNav();
 
   $('.collapsible').collapsible();
-})
+  
+});

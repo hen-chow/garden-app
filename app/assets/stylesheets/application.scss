@@ -11,7 +11,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *= require jquery-ui.min
- *= require jquery.gridly
  *= require font-awesome
  *= require_tree .
  *= require_self
@@ -28,22 +27,34 @@ $primary-color: color("green", "accent-3");
 $secondary-color: color("grey", "lighten-2");
 $accent-color: color("deep purple", "darken-4");
 
-.gridly {
-  position: relative;
-  width: 700px;
-  height: 700px;
-  // background-color: $accent-color;
-}
 .brick.small {
   width: 100px;
   height: 100px;
-  background-color: $primary-color;
+  // position: relative;
+  // background-color: $primary-color;
+  // display: none;
+  img {
+    width: 50px;
+    height: 50px;
+    // margin: 0 auto;
+  }
 }
-.brick.large {
-  width: 200px;
-  height: 200px;
+
+#box {
+  width: 400px;
+  height: 500px;
+  margin-right: 0;
+  margin-left: auto;
+  right: 0;
   background-color: $secondary-color;
 }
+//
+// .brick.large {
+//   width: 200px;
+//   height: 200px;
+//   background-color: $secondary-color;
+//   display: none;
+// }
 
 body {
   display: flex;
@@ -71,24 +82,18 @@ main {
   // position: absolute;
 }
 
-// canvas {
-//   position: absolute;
-// }
+canvas {
+  position: relative;
+}
 
 .plant-icon {
   height: 50px;
   width: 50px;
 }
 
-#accordion {
-  // margin-right: 0;
-  // margin-left: auto;
-  // right: 0;
-  background-color: $secondary-color;
-  // height: 80vh;
-  // width: 20vw;
-  // position: sticky;
-  // margin-bottom: 0;
+#garden-plan {
+  margin: 0;
+  padding: 10px;  
 }
 
 .ui-accordion, .ui-state-active {
