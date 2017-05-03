@@ -50,6 +50,14 @@ body {
   flex-direction: column;
 }
 
+table {
+  border: 1px solid $secondary-color;
+
+  td {
+    border: 1px solid $secondary-color;
+  }
+}
+
 main {
   flex: 1 0 auto;
 }

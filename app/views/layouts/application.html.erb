@@ -10,6 +10,9 @@
 
   <body>
     <%= render "includes/navigation" %>
+    <div class="container">
+      <%= render "includes/flash_notices" %>
+    </div>
     <%= yield %>
     <%= render "includes/footer" %>
   </body>

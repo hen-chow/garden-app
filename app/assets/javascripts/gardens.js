@@ -39,17 +39,78 @@ var fetchData = function(term){
   });
 }
 
-var displayData = function(data){
-  var result = data.data;
-  console.log(result);
-  result.forEach(function(el){
-    var plantDetails = el.attributes;
-    var $plant = $("<p>").html("<strong>Name: " + plantDetails.name + "</strong>");
-    var $plantInfo = $("<div>").html("<p>Height:" + plantDetails.height + "</p>" + "<p>Sun Requirements: " + plantDetails.sun_requirements + "</p>" + "<p>Spread: " + plantDetails.spread + " cm</p>" + "<p>Row Spacing: " + plantDetails.row_spacing + " cm</p>");
-    $("#plant-details").append($plant).append($plantInfo);
+// var data = response['data']['attributes']; // or whatever
+//
+var $table = $('<table>');
+//
+// var $tr;
+// var $label;
+// var $val;
+//
+// if( data['sun_requirements'].length ){
+//
+//   $tr = $('<tr>');
+//   $label = $('<td class="label">').html( 'Sun Requirements' );
+//   $val = $('<td class="value">').html( data['sun_requirements'] );
+//   $tr.append($label).append($val);
+//   $table.append($tr);
+//
+// }
+//
+// $('#output').append($table); // or whatever
+
+
+var displayData = function(response){
+  var data = response.data.slice(0, 3); // select the top 3 results
+
+  console.log(data);
+  data.forEach(function(el){
+
+    var $tr;
+    var $label;
+    var $val;
+
+    // print plant name
+    $tr = $('<tr>');
+    $label = $('<td class="label">').html( 'Name' );
+    $val = $('<td class="value">').html( el.attributes.name );
+    $tr.append($label).append($val);
+    $table.append($tr);
+
+    // print plant height
+    if (el.attributes.height){
+      $tr = $('<tr>');
+      $label = $('<td class="label">').html( 'Height' );
+      $val = $('<td class="value">').html( el.attributes.height );
+      $tr.append($label).append($val);
+      $table.append($tr);
+    }
+
+    // print plant row spacing
+    if (el.attributes.row_spacing){
+      $tr = $('<tr>');
+      $label = $('<td class="label">').html( 'Row Spacing' );
+      $val = $('<td class="value">').html( el.attributes.row_spacing );
+      $tr.append($label).append($val);
+      $table.append($tr);
+    }
+
+    // print plant sun requirements
+    if (el.attributes.sun_requirements){
+      $tr = $('<tr>');
+      $label = $('<td class="label">').html( 'Sun Requirements' );
+      $val = $('<td class="value">').html( el.attributes.sun_requirements );
+      $tr.append($label).append($val);
+      $table.append($tr);
+    }
+
+    $("#plant-details").append($table);
   })
 }
 
+
+var createTable = function(data){
+}
 // draw the garden canvas based on user entry
 var drawCanvas = function(w, h){
   var canvas = document.querySelector("canvas");

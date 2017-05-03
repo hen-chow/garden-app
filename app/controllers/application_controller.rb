@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   private
 
   def fetch_user
-    @current_user = User.find_by_id(session[:user_id]) if session[:user_id]
+    user = session[:user_id]
+    @current_user = User.find_by_id(user["id"]) if session[:user_id]
   end
 
   def authenticate_user

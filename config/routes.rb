@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
   resources :gardens, only: [:new, :create]
-  
+
   get "signin", to: "sessions#new", as: "login"
   post "signin", to: "sessions#create"
   delete "signout", to: "sessions#destroy", as: "signout"
