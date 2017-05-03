@@ -30,8 +30,9 @@ $accent-color: color("deep purple", "darken-4");
 
 .gridly {
   position: relative;
-  width: 500px;
-  background-color: $accent-color;
+  width: 700px;
+  height: 700px;
+  // background-color: $accent-color;
 }
 .brick.small {
   width: 100px;
@@ -61,30 +62,13 @@ table {
 main {
   flex: 1 0 auto;
 }
-// .content {
-//   position: relative;
-// }
 
-// .page-footer {
-//   position: absolute;
-//   bottom: 0;
-// }
-
-// header, main, footer {
-//  padding-left: 300px;
-// }
-//
-// @media only screen and (max-width : 992px) {
-//  header, main, footer {
-//    padding-left: 0;
-//  }
-// }
 #canvas {
   margin-left: 0;
   margin-right: auto;
   height: 80vh;
   width: 20vw;
-  position: absolute;
+  // position: absolute;
 }
 
 // canvas {
@@ -97,13 +81,14 @@ main {
 }
 
 #accordion {
-  margin-right: 0;
-  margin-left: auto;
+  // margin-right: 0;
+  // margin-left: auto;
   // right: 0;
   background-color: $secondary-color;
-  height: 80vh;
-  width: 20vw;
-  position: sticky;
+  // height: 80vh;
+  // width: 20vw;
+  // position: sticky;
+  // margin-bottom: 0;
 }
 
 .ui-accordion, .ui-state-active {

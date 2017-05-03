@@ -35,7 +35,7 @@ var fetchData = function(term){
     data: {
       filter: term
     },
-		success: displayData
+		success: selectData
   });
 }
 
@@ -59,12 +59,33 @@ var $table = $('<table>');
 //
 // $('#output').append($table); // or whatever
 
-
-var displayData = function(response){
-  var data = response.data.slice(0, 3); // select the top 3 results
+// select data with images
+var selectData = function(response) {
+  var data = response.data;
+  var results = [];
+  var height = "";
 
   console.log(data);
   data.forEach(function(el){
+
+    var details = el.attributes;
+
+    if (details.main_image_path != "/assets/baren_field_square-3dbd07fc93d8c64a2812339ab9748b18.jpg") {
+      results.push(el);
+    };
+  })
+  console.log('Selecting results');
+  displayData(results);
+};
+
+// display data in a result table
+var displayData = function(response){
+  var data = response.slice(0, 5); // select the top 5 results
+
+  console.log('selecting top 5');
+  data.forEach(function(el){
+
+    var details = el.attributes;
 
     var $tr;
     var $label;
@@ -73,56 +94,56 @@ var displayData = function(response){
     // print plant name
     $tr = $('<tr>');
     $label = $('<td class="label">').html( 'Name' );
-    $val = $('<td class="value">').html( el.attributes.name );
+    $val = $('<td class="value">').html( details.name );
     $tr.append($label).append($val);
     $table.append($tr);
 
     // print plant height
-    if (el.attributes.height != null && el.attributes.height != ""){
+    if (details.height != null && details.height != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Height' );
-      $val = $('<td class="value">').html( el.attributes.height );
+      $val = $('<td class="value">').html( details.height );
       $tr.append($label).append($val);
       $table.append($tr);
     }
 
     // print plant row spacing
-    if (el.attributes.row_spacing != null && el.attributes.row_spacing != ""){
+    if (details.row_spacing != null && details.row_spacing != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Row Spacing' );
-      $val = $('<td class="value">').html( el.attributes.row_spacing );
+      $val = $('<td class="value">').html( details.row_spacing );
       $tr.append($label).append($val);
       $table.append($tr);
     }
 
     // print plant sun requirements
-    if (el.attributes.sun_requirements != null && el.attributes.sun_requirements != ""){
+    if (details.sun_requirements != null && details.sun_requirements != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Sun Requirements' );
-      $val = $('<td class="value">').html( el.attributes.sun_requirements );
+      $val = $('<td class="value">').html( details.sun_requirements );
       $tr.append($label).append($val);
       $table.append($tr);
     }
 
-    if (el.attributes.main_image_path != null && el.attributes.main_image_path != ""){
+    if (details.main_image_path != null && details.main_image_path != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Image' );
       $val = $('<td class="value">')
-      $image = $('<img>').attr( "src", el.attributes.main_image_path);
+      $image = $('<img>').attr( "src", details.main_image_path);
+      $image.css({
+        width: "50px",
+        height: "50px"
+      });
       $val.append($image);
       $tr.append($label).append($val);
       $table.append($tr);
     }
 
-
-
     $("#plant-details").append($table);
-  })
+  });
 }
 
 
-var createTable = function(data){
-}
 // draw the garden canvas based on user entry
 var drawCanvas = function(w, h){
   var canvas = document.querySelector("canvas");
@@ -147,19 +168,15 @@ var drawCanvas = function(w, h){
   }
 }
 
-// var createGrid = function () {
-//     var options = {
-//         cellHeight: 80,
-//         verticalMargin: 10
-//     };
-//     $('.grid-stack').gridstack(options);
-// };
-
 var createGrid = function(){
   $('.gridly').gridly({
-    base: 60, // px
+    base: 80, // px
     gutter: 20, // px
-    columns: 12
+    columns: 8
+  });
+
+  $('.gridly').css({
+    backgroundColor: "red"
   });
 }
 
