@@ -172,10 +172,17 @@ var drawCanvas = function(w, h){
 var createBrick = function(src, name){
   $brick = $("<div>").addClass("brick small").css("display", "absolute");
   $img = $("<img>").attr("src", src).attr("name", name);
-  $brick.append($img);
+  $overlay = $("<div>").addClass("overlay");
+  $text = $("<div>").addClass("text").text(name);
+  $overlay.append($text);
+  $brick.append($img).append($overlay);
   $brick.draggable({
     snap: true,
-    containment: "#garden-plan", 
+    snapMode: "outer",
+    containment: "#garden-plan",
+    snapTolerance: 10,
+    grid: [ 20, 20 ],
+    opacity: 0.35,
     scroll: false
   });
   $("#box").append($brick);
@@ -186,6 +193,10 @@ $(document).ready(function(){
   $("#draw-canvas").on("click", function(){
     var height = $("#height").val();
     var width = $("#width").val();
+
+    var $gardenSize = $('<h6>').html("<strong>Dimension:</strong> " + height + "m x " + width + "m");
+
+    $("#dimension").append($gardenSize); // add garden dimension in planting box
 
     var newCanvas = drawCanvas(width, height);
 

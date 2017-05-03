@@ -28,21 +28,55 @@ $secondary-color: color("grey", "lighten-2");
 $accent-color: color("deep purple", "darken-4");
 
 .brick.small {
-  width: 100px;
-  height: 100px;
+  width: 55px;
+  height: 55px;
+  margin: 0;
   // position: relative;
   // background-color: $primary-color;
   // display: none;
   img {
     width: 50px;
     height: 50px;
-    // margin: 0 auto;
+    margin: 0 auto;
   }
+  // :hover {
+  //   .overlay {
+  //     opacity: 1;
+  //   }
+  // }
+}
+
+.brick.small:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.text {
+  color: $secondary-color;
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
 
 #box {
   width: 400px;
   height: 500px;
+  padding: 10px;
   margin-right: 0;
   margin-left: auto;
   right: 0;
@@ -92,8 +126,8 @@ canvas {
 }
 
 #garden-plan {
-  margin: 0;
-  padding: 10px;  
+  margin: 0 auto;
+  padding: 0;
 }
 
 .ui-accordion, .ui-state-active {
