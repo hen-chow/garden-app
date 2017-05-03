@@ -78,7 +78,7 @@ var displayData = function(response){
     $table.append($tr);
 
     // print plant height
-    if (el.attributes.height){
+    if (el.attributes.height != null && el.attributes.height != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Height' );
       $val = $('<td class="value">').html( el.attributes.height );
@@ -87,7 +87,7 @@ var displayData = function(response){
     }
 
     // print plant row spacing
-    if (el.attributes.row_spacing){
+    if (el.attributes.row_spacing != null && el.attributes.row_spacing != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Row Spacing' );
       $val = $('<td class="value">').html( el.attributes.row_spacing );
@@ -96,13 +96,25 @@ var displayData = function(response){
     }
 
     // print plant sun requirements
-    if (el.attributes.sun_requirements){
+    if (el.attributes.sun_requirements != null && el.attributes.sun_requirements != ""){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Sun Requirements' );
       $val = $('<td class="value">').html( el.attributes.sun_requirements );
       $tr.append($label).append($val);
       $table.append($tr);
     }
+
+    if (el.attributes.main_image_path != null && el.attributes.main_image_path != ""){
+      $tr = $('<tr>');
+      $label = $('<td class="label">').html( 'Image' );
+      $val = $('<td class="value">')
+      $image = $('<img>').attr( "src", el.attributes.main_image_path);
+      $val.append($image);
+      $tr.append($label).append($val);
+      $table.append($tr);
+    }
+
+
 
     $("#plant-details").append($table);
   })
