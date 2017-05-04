@@ -46,7 +46,6 @@ var $table = $('<table>');
 var selectData = function(response) {
   var data = response.data;
   var results = [];
-  var height = "";
 
   console.log(data);
   data.forEach(function(el){
@@ -128,8 +127,7 @@ var displayData = function(response){
         width: "50px",
         height: "50px"
       });
-      // $button = $('<button>').addClass("btn-floating btn-large waves-effect waves-light green accent-3").html("<i class='material-icons'>add</i>");
-      $button = $('<button>').addClass("waves-effect waves-teal btn-flat").text("+ add to my plant box")
+      $button = $('<button>').addClass("waves-effect waves-teal btn-flat").text("+ add to my planting box")
       $button.attr({
         src: details.main_image_path,
         name: details.name,
@@ -143,10 +141,8 @@ var displayData = function(response){
     $("#plant-details").append($table);
   });
 }
-// store height, width and ratio
-var height;
-var width;
-var ratio;
+// store gardeninfo - height, width and ratio
+var gardenInfo = {};
 
 var maxWidth = 800;
 
@@ -230,6 +226,11 @@ $(document).ready(function(){
     $("#width").val("");
     $('.collapsible').collapsible('open', 1); // close current tab to open the next tab
 
+    return gardenInfo = {
+      height: height,
+      width: width,
+      ratio: ratio
+    }
   });
 
   // get search results from api

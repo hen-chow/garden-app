@@ -8,7 +8,15 @@ class UsersController < ApplicationController
     @user = User.new(clean_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path
+      respond_to do |format|
+        format.html do
+          redirect_to new_garden_path
+        end
+        format.json do
+          render json: @user.id
+        binding.pry
+        end
+      end
     else
       render :new
     end

@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:email])
-    if user
+    if user.present?
       if user.authenticate(params[:password])
         # we have a real user
-        session[:user_id] = user
+        session[:user_id] = user.id
         redirect_to root_path
       else
         render :new
