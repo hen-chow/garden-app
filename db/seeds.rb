@@ -15,9 +15,9 @@ user_1 = User.create(name: 'Hen', email: 'admin@admin.com', password: 'password'
 user_2 = User.create(name: 'Foo', email: 'test@admin.com', password: 'password')
 user_3 = User.create(name: 'Bar', email: 'testing@admin.com', password: 'password')
 
-garden_1 = Garden.create(name: 'My 1st garden', user_id: user_1.id, lat: -33.865269, lon: 151.1960453, height: 200, width: 100)
-garden_2 = Garden.create(name: "Foo's garden", user_id: user_2.id, lat: -37.813008, lon: 144.945882, height: 5500, width: 700)
-garden_3 = Garden.create(name: 'Garden Bar', user_id: user_3.id, lat: 51.515314, lon: -0.126344, height: 450, width: 150)
+garden_1 = Garden.create(name: 'My 1st garden', user_id: user_1.id, lat: -33.865269, lon: 151.1960453, height: 200, width: 100, left: 0, top: 163)
+garden_2 = Garden.create(name: "Foo's garden", user_id: user_2.id, lat: -37.813008, lon: 144.945882, height: 5500, width: 700, left: 0, top: 163)
+garden_3 = Garden.create(name: 'Garden Bar', user_id: user_3.id, lat: 51.515314, lon: -0.126344, height: 450, width: 150, left: 0, top: 163)
 
 plant_1 = Plant.create(garden_id: garden_1.id, name: 'basil', top: 20, left: 10)
 plant_2 = Plant.create(garden_id: garden_1.id, name: 'lemon tree', top: 40, left: 30)

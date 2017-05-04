@@ -50,28 +50,28 @@ $accent-color: color("deep purple", "darken-4");
 #sign-in, #sign-up {
   height: 60vh;
 }
-// .page-footer {
-//   position: absolute;
-//   clear: both;
-//   bottom: 0;
-//   width: 100%;
-// }
 
 .right.hide-on-med-and-down {
   float: right;
 }
 
 .brick.small {
-  width: 55px;
-  height: 55px;
+  width: 75px;
+  height: 75px;
   margin: 0;
   // position: relative;
   display: inline-block;
   img {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     margin: 0 auto;
+    border-radius: 10px;
   }
+}
+
+#plant-select-button {
+  margin: 10px 20px;
+  vertical-align: top;
 }
 
 .brick.small:hover .overlay {
@@ -104,7 +104,7 @@ $accent-color: color("deep purple", "darken-4");
 #box {
   width: 400px;
   height: 500px;
-  padding: 10px;
+  padding: 20px;
   margin-right: 0;
   margin-left: auto;
   // float: right;
@@ -157,6 +157,13 @@ main {
 
 #panel {
   position: sticky;
+  // border: 1px solid red;
+  // width: 28%;
+  // margin-right: 0;
+  // margin-left: auto;
+  // display: inline-block;
+  // vertical-align: top;
+
 }
 
 canvas {

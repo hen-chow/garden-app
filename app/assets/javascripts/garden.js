@@ -121,13 +121,17 @@ var displayData = function(response){
       $tr = $('<tr>');
       $label = $('<td class="label">').html( 'Image' );
       $val = $('<td class="value">');
-      // $imgContainer = $('<div>');
-      $image = $('<img>').attr( "src", details.main_image_path).attr("name", details.name).attr("class", "plant_img");
+      $image = $('<img>');
+      $image.attr({
+        src: details.main_image_path,
+        name: details.name,
+        class: "plant_img"
+      });
       $image.css({
         width: "50px",
         height: "50px"
       });
-      $button = $('<button>').addClass("waves-effect waves-teal btn-flat").text("+ add to my planting box")
+      $button = $('<button>').addClass("waves-effect waves-purple btn-flat").text("+ add to my planting box");
       $button.attr({
         src: details.main_image_path,
         name: details.name,
@@ -218,7 +222,10 @@ var saveGarden = function(gardenInfo){
     dataType: "JSON",
     data: {
       height: gardenInfo.height,
-      width: gardenInfo.width
+      width: gardenInfo.width,
+      top: gardenInfo.top,
+      left: gardenInfo.left,
+      ratio: gardenInfo.ratio
     },
     success: function(data){
       var gardenId = data;
@@ -241,7 +248,10 @@ var updateGarden = function(gardenInfo){
     data: {
       garden_id: gardenInfo.garden_id,
       height: gardenInfo.height,
-      width: gardenInfo.width
+      width: gardenInfo.width,
+      top: gardenInfo.top,
+      left: gardenInfo.left,
+      ratio: gardenInfo.ratio
     },
     success: function(data){
       console.log("Updating...");
@@ -296,9 +306,6 @@ var updatePlant = function(plantInfo){
     success: function(data){
       console.log("Updating plant...");
       console.log(data);
-      // var plantId = data;
-      // $selectedPlant = $(this.plantInfo.node.draggable);
-      // $selectedPlant.attr("plant_id", plantId); // add plant id to the selected plant
     },
     error: function(){
       console.log("Something not quite right with plant update...");
@@ -312,6 +319,8 @@ $(document).ready(function(){
 
     var height = $("#height").val();
     var width = $("#width").val();
+    var top = $("#garden-plan").position().top; // measuring top position
+    var left = $("#garden-plan").position().left; // measuring left position
 
     var $gardenId = $("#garden-plan").attr("garden_id");
 
@@ -330,6 +339,8 @@ $(document).ready(function(){
         garden_id: $gardenId,
         height: height,
         width: width,
+        top: top,
+        left: left,
         ratio: ratio
       };
       return updateGarden(gardenInfo);
@@ -345,6 +356,8 @@ $(document).ready(function(){
       var gardenInfo = {
         height: height,
         width: width,
+        top: top,
+        left: left,
         ratio: ratio
       };
       return saveGarden(gardenInfo);

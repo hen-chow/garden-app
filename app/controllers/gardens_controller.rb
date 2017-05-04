@@ -27,7 +27,7 @@ class GardensController < ApplicationController
   private
 
   def clean_params
-    params.require(:garden).permit(:name, :lon, :lat, :user_id, :width, :height, :img_src)
+    params.require(:garden).permit(:name, :lon, :lat, :user_id, :width, :height, :img_src, :left, :top, :ratio)
   end
 
 end
