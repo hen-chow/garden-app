@@ -122,7 +122,7 @@ var displayData = function(response){
       $label = $('<td class="label">').html( 'Image' );
       $val = $('<td class="value">');
       // $imgContainer = $('<div>');
-      $image = $('<img>').attr( "src", details.main_image_path).attr("name", details.name).attr("id", details.id);
+      $image = $('<img>').attr( "src", details.main_image_path).attr("name", details.name).attr("class", "plant_img");
       $image.css({
         width: "50px",
         height: "50px"
@@ -210,7 +210,6 @@ var createBrick = function(src, name){
   $("#box").append($brick);
 }
 
-
 // trigger create garden in database
 var saveGarden = function(gardenInfo){
   $.ajax({
@@ -221,11 +220,88 @@ var saveGarden = function(gardenInfo){
       height: gardenInfo.height,
       width: gardenInfo.width
     },
-    success: function(){
+    success: function(data){
+      var gardenId = data;
       console.log("Autosaving...");
+      console.log(gardenId);
+      $("#garden-plan").attr("garden_id", gardenId); // add garden id to garden plan
     },
     error: function(){
       console.log("Something's gone wrong...");
+    }
+  })
+}
+
+// trigger update garden in database
+var updateGarden = function(gardenInfo){
+  $.ajax({
+    url: "/gardens/:id",
+    method: "PUT",
+    dataType: "JSON",
+    data: {
+      garden_id: gardenInfo.garden_id,
+      height: gardenInfo.height,
+      width: gardenInfo.width
+    },
+    success: function(data){
+      console.log("Updating...");
+      console.log(data);
+      // $("#garden-plan").attr("garden_id", gardenId); // add garden id to garden plan
+    },
+    error: function(){
+      console.log("Something's gone wrong with the update...");
+    }
+  })
+}
+
+
+// trigger create plant in database
+var createPlant = function(plantInfo){
+  $.ajax({
+    url: "/plants",
+    method: "POST",
+    dataType: "JSON",
+    plantInfo: plantInfo,
+    data: {
+      name: plantInfo.name,
+      img_src: plantInfo.img_src,
+      top: plantInfo.top,
+      left: plantInfo.left,
+      garden_id: plantInfo.garden_id
+    },
+    success: function(data){
+      console.log("Creating plant...");
+      var plantId = data;
+      $selectedPlant = $(this.plantInfo.node.draggable);
+      $selectedPlant.attr("plant_id", plantId); // add plant id to the selected plant
+    },
+    error: function(){
+      console.log("Something not quite right with plant creation...");
+    }
+  })
+}
+
+// trigger update plant in database
+var updatePlant = function(plantInfo){
+  $.ajax({
+    url: "/plants/:id",
+    method: "PUT",
+    dataType: "JSON",
+    // plantInfo: plantInfo,
+    data: {
+      top: plantInfo.top,
+      left: plantInfo.left,
+      plant_id: plantInfo.node.draggable.attr("plant_id")
+    },
+    success: function(data){
+      console.log("Updating plant...");
+      console.log(data);
+      // var plantId = data;
+      // $selectedPlant = $(this.plantInfo.node.draggable);
+      // $selectedPlant.attr("plant_id", plantId); // add plant id to the selected plant
+    },
+    error: function(){
+      console.log("Something not quite right with plant update...");
     }
   })
 }
@@ -237,22 +313,42 @@ $(document).ready(function(){
     var height = $("#height").val();
     var width = $("#width").val();
 
-    var newDimension = createDimension(width, height);
-
-    var newCanvas = drawCanvas(width, height);
-
-    $("canvas").droppable(); // make canvas a droppable area
+    var $gardenId = $("#garden-plan").attr("garden_id");
 
     $("#height").val("");
     $("#width").val("");
     $('.collapsible').collapsible('open', 1); // close current tab to open the next tab
 
-    var gardenInfo = {
-      height: height,
-      width: width,
-      ratio: ratio
+    if ($gardenId){
+      var newDimension = createDimension(width, height);
+
+      var newCanvas = drawCanvas(width, height);
+
+      $("canvas").droppable(); // make canvas a droppable area
+
+      var gardenInfo = {
+        garden_id: $gardenId,
+        height: height,
+        width: width,
+        ratio: ratio
+      };
+      return updateGarden(gardenInfo);
+
+    } else {
+
+      var newDimension = createDimension(width, height);
+
+      var newCanvas = drawCanvas(width, height);
+
+      $("canvas").droppable(); // make canvas a droppable area
+
+      var gardenInfo = {
+        height: height,
+        width: width,
+        ratio: ratio
+      };
+      return saveGarden(gardenInfo);
     }
-    return saveGarden(gardenInfo);
   });
 
   // get search results from api
@@ -291,24 +387,29 @@ $(document).ready(function(){
     // event.stopPropagation();
 
     if (event.target.className === "ui-droppable"){
-      debugger
       console.log("dropped!");
-      var top = ui.position.top;
-      var left = ui.position.left;
-      var name = ui.draggable.context.innerHTML.name;
-      var img_src = ui.draggable.context.innerHTML.src;
+      debugger
+      // get plant info
+      var plantInfo = {
+        node: ui,
+        top: ui.position.top,
+        left: ui.position.left,
+        img_src: $(ui.draggable.context.innerHTML).eq(0).attr("src"),
+        name: $(ui.draggable.context.innerHTML).eq(0).attr("name"),
+        garden_id: $("#garden-plan").attr("garden_id")
+      };
 
+      if (ui.draggable.attr("plant_id")){
 
+        updatePlant(plantInfo);
+
+      } else {
+
+        createPlant(plantInfo);
+
+      }
 
     }
-  //   var left = $(this).position().left;
-  //   var name = $(this).attr("name");
-  //   var img_src = $(this).attr("src");
-  //   debugger
-  //
-  //   if (event.target.className === "ui-droppable"){
-  //     alert("dropped!")
-  //   }
   })
 
 })

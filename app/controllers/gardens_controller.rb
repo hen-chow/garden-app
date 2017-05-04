@@ -10,16 +10,15 @@ class GardensController < ApplicationController
     end
 
     if garden.save
-      render json: {message: "success"}
-    # end
-    #
-    # if garden.save
-      # respond_to do |format|
-      #   render json: garden.id
+      render json: garden.id
     end
   end
 
   def update
+    garden = Garden.find(params[:garden_id])
+    garden.update_attributes(width: params[:width], height: params[:height])
+
+    render json: {message: "success!"}
   end
 
   def show
