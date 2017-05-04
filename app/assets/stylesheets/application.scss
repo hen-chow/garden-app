@@ -27,6 +27,40 @@ $primary-color: color("green", "accent-3");
 $secondary-color: color("grey", "lighten-2");
 $accent-color: color("deep purple", "darken-4");
 
+.fa.fa-pagelines {
+  font-size: 1.5em;
+}
+
+#spotlight {
+  background-image: url("header-image.jpg");
+  background-position: center;
+  background-size: cover;
+  opacity: 0.9;
+  padding: 10px;
+
+  h1 {
+    font-weight: bold;
+  }
+
+  h5 {
+    color: white;
+  }
+}
+
+#sign-in, #sign-up {
+  height: 60vh;
+}
+// .page-footer {
+//   position: absolute;
+//   clear: both;
+//   bottom: 0;
+//   width: 100%;
+// }
+
+.right.hide-on-med-and-down {
+  float: right;
+}
+
 .brick.small {
   width: 55px;
   height: 55px;

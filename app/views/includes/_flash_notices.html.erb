@@ -1,7 +1,7 @@
 <% if flash %>
   <% flash.each do |k,v| %>
-    <div class="card grey darken-1 <%= k.to_s %>">
-      <div class="card-content white-text">
+    <div class="card green accent-2 <%= k.to_s %>">
+      <div class="card-content white-text center">
         <%= k.to_s.capitalize %>
       </div>
       <p><%= v %></p>
