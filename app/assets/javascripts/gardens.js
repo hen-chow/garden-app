@@ -224,6 +224,8 @@ $(document).ready(function(){
 
     var newCanvas = drawCanvas(width, height);
 
+    $("canvas").droppable(); // make canvas a droppable area
+
     $("#height").val("");
     $("#width").val("");
     $('.collapsible').collapsible('open', 1); // close current tab to open the next tab

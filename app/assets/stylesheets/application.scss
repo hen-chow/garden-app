@@ -32,18 +32,12 @@ $accent-color: color("deep purple", "darken-4");
   height: 55px;
   margin: 0;
   // position: relative;
-  // background-color: $primary-color;
-  // display: none;
+  display: inline-block;
   img {
     width: 50px;
     height: 50px;
     margin: 0 auto;
   }
-  // :hover {
-  //   .overlay {
-  //     opacity: 1;
-  //   }
-  // }
 }
 
 .brick.small:hover .overlay {
@@ -114,12 +108,12 @@ main {
   margin-right: auto;
   height: 80vh;
   width: 71%;
-  border: 1px solid red;
+  // border: 1px solid red;
   display: inline-block;
 }
 
 #planter {
-  border: 1px solid red;
+  // border: 1px solid red;
   width: 28%;
   margin-right: 0;
   margin-left: auto;
