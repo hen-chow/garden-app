@@ -143,29 +143,55 @@ var displayData = function(response){
     $("#plant-details").append($table);
   });
 }
+// store height, width and ratio
+var height;
+var width;
+var ratio;
 
+var maxWidth = 800;
+
+// calculate width-height ratio
+var calculateRatio = function(w, h){
+  if (parseInt(h) > parseInt(w)){
+    return ratio = parseInt(h) / parseInt(w); // spin the garden plan around to fit the screen
+
+  } else {
+    return ratio = parseInt(w) / parseInt(h);
+  }
+}
 // draw the garden canvas based on user entry
 var drawCanvas = function(w, h){
+  console.log('getting width-height ratio now...');
+  calculateRatio(w, h);
+  console.log(ratio);
+
   var canvas = document.querySelector("canvas");
   var context = canvas.getContext("2d");
-  console.log('drawing canvas now');
-  if( w === h){
-    var newWidth = 500;
-    var newHeight = 500;
-    canvas.width = newWidth;
-    canvas.height = newHeight;
-    canvas.style.width = newWidth + "px";
-    canvas.style.height = newHeight + "px";
-    context.fillStyle = "#c5e1a5";
-    context.fillRect(10, 10, newWidth, newHeight);
+  console.log('drawing canvas now...');
+
+  if(ratio === 1){
+    var newWidth = maxWidth;
+    var newHeight = maxWidth;
   } else {
-    canvas.width = w;
-    canvas.height = h;
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
-    context.fillStyle = "#c5e1a5";
-    context.fillRect(10, 10, w, h);
+    var newWidth = maxWidth;
+    var newHeight = maxWidth / ratio;
   }
+  canvas.width = newWidth;
+  canvas.height = newHeight;
+  canvas.style.width = newWidth + "px";
+  canvas.style.height = newHeight + "px";
+  context.fillStyle = "#c5e1a5";
+  context.fillRect(0, 0, newWidth, newHeight);
+
+}
+
+var createDimension = function(w, h) {
+  $("#dimension").html("");
+
+  var $gardenSize = $('<h6>').html("<strong>Dimension:</strong> " + w + "m x " + h + "m");
+
+  $("#dimension").append($gardenSize); // add garden dimension in planting box
+
 }
 
 // create brick of image when event handler clicked
@@ -194,9 +220,7 @@ $(document).ready(function(){
     var height = $("#height").val();
     var width = $("#width").val();
 
-    var $gardenSize = $('<h6>').html("<strong>Dimension:</strong> " + height + "m x " + width + "m");
-
-    $("#dimension").append($gardenSize); // add garden dimension in planting box
+    var newDimension = createDimension(width, height);
 
     var newCanvas = drawCanvas(width, height);
 

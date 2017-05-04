@@ -79,6 +79,7 @@ $accent-color: color("deep purple", "darken-4");
   padding: 10px;
   margin-right: 0;
   margin-left: auto;
+  // float: right;
   right: 0;
   background-color: $secondary-color;
 }
@@ -112,8 +113,22 @@ main {
   margin-left: 0;
   margin-right: auto;
   height: 80vh;
-  width: 20vw;
-  // position: absolute;
+  width: 71%;
+  border: 1px solid red;
+  display: inline-block;
+}
+
+#planter {
+  border: 1px solid red;
+  width: 28%;
+  margin-right: 0;
+  margin-left: auto;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#panel {
+  position: sticky;
 }
 
 canvas {

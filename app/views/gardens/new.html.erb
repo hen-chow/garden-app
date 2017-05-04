@@ -1,71 +1,70 @@
 <div class="container">
   <h2 class="header center green-text text-accent-3">Design your dream garden</h2>
-  <div>
-    <div id="canvas">
-      <canvas id="garden-plan"></canvas>
-      <!-- <div class="col s12 m8 l9"> <! Note that "m8 l9" was added -->
-      <!-- canvas page content
+</div>
+<div>
+  <div id="canvas">
+    <canvas id="garden-plan"></canvas>
+  </div>
+    <!-- <div class="col s12 m8 l9"> <! Note that "m8 l9" was added -->
+    <!-- canvas page content
 
-            This content will be:
-        9-columns-wide on large screens,
-        8-columns-wide on medium screens,
-        12-columns-wide on small screens  -->
-    </div>
+          This content will be:
+      9-columns-wide on large screens,
+      8-columns-wide on medium screens,
+      12-columns-wide on small screens  -->
+  <!-- </div> -->
+  <div id="planter">
     <div id="box">
       <h5>Planting Box</h5>
       <div id="dimension"></div>
     </div>
-      <!-- Grey navigation panel
-
-            This content will be:
-        3-columns-wide on large screens,
-        4-columns-wide on medium screens,
-        12-columns-wide on small screens  -->
-    <div id="panel">
-      <ul class="collapsible" data-collapsible="accordion">
-       <li>
-         <div class="collapsible-header"><i class="material-icons">filter_drama</i>Garden Size</div>
-         <div class="collapsible-body">
-           <span>
-             <p>Enter the dimensions of your garden here</p>
-             <div class="input-field">
-               <input type="text" id="height" placeholder="Enter in meters" value="50"/>
-               <label for="height">Height</label>
-             </div>
-             <div class="input-field">
-               <input type="text" id="width" placeholder="Enter in meters" value="50"/>
-               <label for="width">Width</label>
-             </div>
-             <div class="input-field center">
-               <button id="draw-canvas" class="btn waves-effect waves-light green accent-3">Create</button>
-             </div>
-           </span>
-         </div>
-       </li>
-       <li>
-         <div class="collapsible-header"><i class="material-icons">place</i>Search for a Plant</div>
-         <div class="collapsible-body">
-          <span>
-            <p>Enter the plant name here</p>
-            <div class="input-field">
-              <input type="text" id="plant-name" value="tomato"/>
-              <label for="plant-name">Name</label>
-            </div>
-            <div class="input-field center">
-              <button id="plant-search" class="btn waves-effect waves-light green accent-3">Search</button>
-            </div>
-          </span>
-        </div>
-       </li>
-       <li>
-         <div class="collapsible-header"><i class="material-icons">whatshot</i>Search Results</div>
-         <div class="collapsible-body">
-          <span>
-            <div id="plant-details"></div>
-          </span>
-        </div>
-       </li>
-     </ul>
-   </div>
   </div>
+</div>
+<div class="container">
+  <div id="panel">
+    <ul class="collapsible" data-collapsible="accordion">
+     <li>
+       <div class="collapsible-header"><i class="material-icons">filter_drama</i>Garden Size</div>
+       <div class="collapsible-body">
+         <span>
+           <p>Enter the dimensions of your garden here</p>
+           <div class="input-field">
+             <input type="text" id="width" placeholder="Enter in meters" value="50"/>
+             <label for="width">Width</label>
+           </div>
+           <div class="input-field">
+             <input type="text" id="height" placeholder="Enter in meters" value="50"/>
+             <label for="height">Height</label>
+           </div>
+           <div class="input-field center">
+             <button id="draw-canvas" class="btn waves-effect waves-light green accent-3">Create</button>
+           </div>
+         </span>
+       </div>
+     </li>
+     <li>
+       <div class="collapsible-header"><i class="material-icons">place</i>Search for a Plant</div>
+       <div class="collapsible-body">
+        <span>
+          <p>Enter the plant name here</p>
+          <div class="input-field">
+            <input type="text" id="plant-name" value="tomato"/>
+            <label for="plant-name">Name</label>
+          </div>
+          <div class="input-field center">
+            <button id="plant-search" class="btn waves-effect waves-light green accent-3">Search</button>
+          </div>
+        </span>
+      </div>
+     </li>
+     <li>
+       <div class="collapsible-header"><i class="material-icons">whatshot</i>Search Results</div>
+       <div class="collapsible-body">
+        <span>
+          <div id="plant-details"></div>
+        </span>
+      </div>
+     </li>
+   </ul>
+ </div>
 </div>
