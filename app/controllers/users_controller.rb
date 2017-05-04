@@ -14,13 +14,21 @@ class UsersController < ApplicationController
         end
         format.json do
           render json: @user.id
-        binding.pry
         end
       end
     else
       render :new
     end
   end
+
+  # def check
+  #   @user = User.find(session[:user_id])
+  #   if @user.present?
+  #     render json: @user.id
+  #   else
+  #     render json: {message: "user not found"}
+  #   end
+  # end
 
   def show
     @user = User.find(params[:id])

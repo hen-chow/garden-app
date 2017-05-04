@@ -5,8 +5,17 @@ class GardensController < ApplicationController
   end
 
   def create
-    if @user
-      garden = Garden.create(clean_params)
+    if @current_user.present?
+      garden = Garden.create(user_id: @current_user.id, width: params[:width], height: params[:height])
+    end
+
+    if garden.save
+      render json: {message: "success"}
+    # end
+    #
+    # if garden.save
+      # respond_to do |format|
+      #   render json: garden.id
     end
   end
 

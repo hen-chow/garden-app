@@ -122,7 +122,7 @@ var displayData = function(response){
       $label = $('<td class="label">').html( 'Image' );
       $val = $('<td class="value">');
       // $imgContainer = $('<div>');
-      $image = $('<img>').attr( "src", details.main_image_path).attr("name", details.name).attr("id", "plant-img");
+      $image = $('<img>').attr( "src", details.main_image_path).attr("name", details.name).attr("id", details.id);
       $image.css({
         width: "50px",
         height: "50px"
@@ -210,9 +210,30 @@ var createBrick = function(src, name){
   $("#box").append($brick);
 }
 
+
+// trigger create garden in database
+var saveGarden = function(gardenInfo){
+  $.ajax({
+    url: "/gardens",
+    method: "POST",
+    dataType: "JSON",
+    data: {
+      height: gardenInfo.height,
+      width: gardenInfo.width
+    },
+    success: function(){
+      console.log("Autosaving...");
+    },
+    error: function(){
+      console.log("Something's gone wrong...");
+    }
+  })
+}
+
 $(document).ready(function(){
 
   $("#draw-canvas").on("click", function(){
+
     var height = $("#height").val();
     var width = $("#width").val();
 
@@ -226,11 +247,12 @@ $(document).ready(function(){
     $("#width").val("");
     $('.collapsible').collapsible('open', 1); // close current tab to open the next tab
 
-    return gardenInfo = {
+    var gardenInfo = {
       height: height,
       width: width,
       ratio: ratio
     }
+    return saveGarden(gardenInfo);
   });
 
   // get search results from api
@@ -259,6 +281,34 @@ $(document).ready(function(){
     var name = $(this).attr("name");
 
     createBrick(img_src, name);
+  })
+
+  // drag and drop event listener
+  $(document).on("drop", function(event, ui){
+
+    // prevent default action
+    event.preventDefault();
+    // event.stopPropagation();
+
+    if (event.target.className === "ui-droppable"){
+      debugger
+      console.log("dropped!");
+      var top = ui.position.top;
+      var left = ui.position.left;
+      var name = ui.draggable.context.innerHTML.name;
+      var img_src = ui.draggable.context.innerHTML.src;
+
+
+
+    }
+  //   var left = $(this).position().left;
+  //   var name = $(this).attr("name");
+  //   var img_src = $(this).attr("src");
+  //   debugger
+  //
+  //   if (event.target.className === "ui-droppable"){
+  //     alert("dropped!")
+  //   }
   })
 
 })
