@@ -401,7 +401,7 @@ $(document).ready(function(){
 
     if (event.target.className === "ui-droppable"){
       console.log("dropped!");
-      debugger
+      // debugger
       // get plant info
       var plantInfo = {
         node: ui,
@@ -421,8 +421,11 @@ $(document).ready(function(){
         createPlant(plantInfo);
 
       }
+    };
+  })
 
-    }
+  $("#generate-list").on("click", function(){
+    
   })
 
 })

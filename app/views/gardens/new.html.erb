@@ -9,6 +9,11 @@
     <div id="box">
       <h5 class="center">Planting Box</h5>
       <div id="dimension"></div>
+      <% if @current_user.present? %>
+        <div class="center">
+          <button id="generate-list" class="btn waves-effect waves-light green accent-3">Generate Shopping List</button>
+        </div>
+      <% end %>
     </div>
   </div>
 
