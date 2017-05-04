@@ -425,7 +425,7 @@ $(document).ready(function(){
   })
 
   $("#generate-list").on("click", function(){
-    
+    alert("clicked!");
   })
 
 })
