@@ -18,7 +18,7 @@
 $(document).ready(function(){
   $(".button-collapse").sideNav();
 
-  $('.collapsible').collapsible();
+  // $('.collapsible').collapsible();
 
   $('#flash-notice').on('click', function(){
     $(this).addClass('card-hide');

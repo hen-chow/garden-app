@@ -225,7 +225,8 @@ var createDraggableBrick = function(container){
     snapTolerance: 10,
     grid: [ 20, 20 ],
     opacity: 0.35,
-    scroll: false,
+    scroll: false
+    // appendTo: 'body'
   });
   container.append($brick);
 }
@@ -336,6 +337,11 @@ $(document).ready(function(){
     $('.collapsible').collapsible('open', 0); // close current tab to open the next tab
 
   })
+
+  $('#plant-box-collapsible').on('click.collapse', function(e){
+    console.log('clicked!');
+    e.stopPropagation();
+  });
 
   $("#draw-canvas").on("click", function(){
 
