@@ -63,7 +63,7 @@ var selectData = function(response) {
 // display data in a result table
 var displayData = function(response){
   var data = response.slice(0, 5); // select the top 5 results
-
+  // debugger
   console.log('selecting top 5');
   data.forEach(function(el){
 
@@ -125,17 +125,20 @@ var displayData = function(response){
       $image.attr({
         src: details.main_image_path,
         name: details.name,
+        brick_id: el.id,
         class: "plant_img"
       });
       $image.css({
         width: "50px",
         height: "50px"
       });
-      $button = $('<button>').addClass("waves-effect waves-purple btn-flat").text("+ add to my planting box");
+      // $button = $('<button>').addClass("waves-effect waves-purple btn-flat").text("+ planting box");
+      $button = $('<button>').addClass("btn-floating btn-large waves-effect waves-light purple").text('ADD');
       $button.attr({
         src: details.main_image_path,
         name: details.name,
-        id: "plant-select-button"
+        id: "plant-select-button",
+        brick_id: el.id
       });
       $val.append($image).append($button);
       $tr.append($label).append($val);
@@ -182,7 +185,6 @@ var drawCanvas = function(w, h){
   canvas.style.height = newHeight + "px";
   context.fillStyle = "#c5e1a5";
   context.fillRect(0, 0, newWidth, newHeight);
-
 }
 
 var createDimension = function(w, h) {
@@ -195,13 +197,24 @@ var createDimension = function(w, h) {
 }
 
 // create brick of image when event handler clicked
-var createBrick = function(src, name){
-  $brick = $("<div>").addClass("brick small").css("display", "absolute");
+var createBrick = function(src, name, id){
+  $brick = $("<div>").addClass("brick small").css("display", "absolute").attr("brick_id", id);
   $img = $("<img>").attr("src", src).attr("name", name);
   $overlay = $("<div>").addClass("overlay");
   $text = $("<div>").addClass("text").text(name);
   $overlay.append($text);
   $brick.append($img).append($overlay);
+
+  var $container = $("<div class='brick_container'>").attr("brick_id", id);;
+  $("#box").append($container);
+
+  $container.append($brick.clone());
+
+  createDraggableBrick($container)
+}
+
+var createDraggableBrick = function(container){
+  $brick = container.find(".brick").not(".ui-draggable").clone();
   $brick.draggable({
     snap: true,
     snapMode: "outer",
@@ -209,9 +222,9 @@ var createBrick = function(src, name){
     snapTolerance: 10,
     grid: [ 20, 20 ],
     opacity: 0.35,
-    scroll: false
+    scroll: false,
   });
-  $("#box").append($brick);
+  container.append($brick);
 }
 
 // trigger create garden in database
@@ -315,6 +328,12 @@ var updatePlant = function(plantInfo){
 
 $(document).ready(function(){
 
+  $("#start-button").on("click", function(){
+
+    $('.collapsible').collapsible('open', 0); // close current tab to open the next tab
+
+  })
+
   $("#draw-canvas").on("click", function(){
 
     var height = $("#height").val();
@@ -326,6 +345,7 @@ $(document).ready(function(){
 
     $("#height").val("");
     $("#width").val("");
+    $("#design-container").remove();
     $('.collapsible').collapsible('open', 1); // close current tab to open the next tab
 
     if ($gardenId){
@@ -333,7 +353,16 @@ $(document).ready(function(){
 
       var newCanvas = drawCanvas(width, height);
 
-      $("canvas").droppable(); // make canvas a droppable area
+      // $canvas = $("#canvas") ;
+      // $message = $('<div>').html("<h5>Drop your plants here</h5>").attr("id", "message");
+      // $canvas.append($message);
+
+      $("canvas").droppable({ // make canvas a droppable area
+        accept: '.draggable',
+        drop: function(event, ui ) {
+        dropped = true;
+        }
+      });
 
       var gardenInfo = {
         garden_id: $gardenId,
@@ -380,20 +409,27 @@ $(document).ready(function(){
   $(document).on("click", "img", function(){
     var img_src = $(this).attr("src");
     var name = $(this).attr("name");
+    var brick_id = $(this).attr("brick_id");
 
-    createBrick(img_src, name);
+    createBrick(img_src, name, brick_id);
   })
 
   // click on result button handler
   $(document).on("click", "button#plant-select-button", function(){
     var img_src = $(this).attr("src");
     var name = $(this).attr("name");
+    var brick_id = $(this).attr("brick_id");
 
-    createBrick(img_src, name);
+    createBrick(img_src, name, brick_id);
+
+    $('.collapsible').collapsible('open', 3);
+
   })
 
   // drag and drop event listener
   $(document).on("drop", function(event, ui){
+    $container = $(".brick_container[brick_id=" + ui.draggable.attr("brick_id") + "]");
+    createDraggableBrick($container);
 
     // prevent default action
     event.preventDefault();

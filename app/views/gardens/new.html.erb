@@ -1,11 +1,12 @@
-<div class="container">
+<!-- <div class="container">
   <h2 class="header center green-text text-accent-3">Design your dream garden</h2>
-</div>
+</div> -->
 <div>
   <div id="canvas">
+    <div id="design-container"><div class="center"><button class="btn-large waves-effect waves-light green accent-3" id="start-button">Start Designing</button></div></div>
     <canvas id="garden-plan"></canvas>
   </div>
-  <div id="planter">
+  <!-- <div id="planter">
     <div id="box">
       <h5 class="center">Planting Box</h5>
       <div id="dimension"></div>
@@ -25,9 +26,9 @@
       8-columns-wide on medium screens,
       12-columns-wide on small screens  -->
   <!-- </div> -->
-</div>
-<div class="container">
-  <div id="panel">
+<!-- </div> -->
+<!-- <div class="container"> -->
+  <div id="planter">
     <ul class="collapsible" data-collapsible="accordion">
      <li>
        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Garden Size</div>
@@ -49,7 +50,7 @@
        </div>
      </li>
      <li>
-       <div class="collapsible-header"><i class="material-icons">place</i>Search for a Plant</div>
+       <div class="collapsible-header"><i class="material-icons">search</i>Search for a Plant</div>
        <div class="collapsible-body">
         <span>
           <p>Enter the plant name here</p>
@@ -68,6 +69,15 @@
        <div class="collapsible-body">
         <span>
           <div id="plant-details"></div>
+        </span>
+      </div>
+     </li>
+     <li>
+       <div class="collapsible-header"><i class="fa fa-leaf" aria-hidden="true"></i>Planting Box</div>
+       <div class="collapsible-body">
+         <div id="dimension"></div>
+        <span>
+          <div id="box"></div>
         </span>
       </div>
      </li>

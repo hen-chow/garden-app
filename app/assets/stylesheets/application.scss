@@ -26,6 +26,7 @@ $secondary-color: color("yellow", "base") !default;
 $primary-color: color("green", "accent-3");
 $secondary-color: color("grey", "lighten-2");
 $accent-color: color("deep purple", "darken-4");
+$feature-color: color("grey", "lighten-3");
 
 .fa.fa-pagelines {
   font-size: 1.5em;
@@ -59,7 +60,7 @@ $accent-color: color("deep purple", "darken-4");
   width: 75px;
   height: 75px;
   margin: 0;
-  // position: relative;
+  position: absolute!important;
   display: inline-block;
   img {
     width: 70px;
@@ -70,8 +71,9 @@ $accent-color: color("deep purple", "darken-4");
 }
 
 #plant-select-button {
-  margin: 10px 20px;
+  margin: 0 20px;
   vertical-align: top;
+  width: 50px;
 }
 
 .brick.small:hover .overlay {
@@ -102,14 +104,21 @@ $accent-color: color("deep purple", "darken-4");
 }
 
 #box {
-  width: 400px;
-  height: 500px;
+  width: 100%;
+  height: auto;
   padding: 20px;
   margin-right: 0;
   margin-left: auto;
   // float: right;
   right: 0;
-  background-color: $secondary-color;
+  // background-color: $secondary-color;
+}
+
+.brick_container{
+  width: 75px;
+  height: 75px;
+  display: inline-block;
+  position: relative;
 }
 //
 // .brick.large {
@@ -141,9 +150,27 @@ main {
   margin-left: 0;
   margin-right: auto;
   height: 80vh;
-  width: 71%;
+  width: 69%;
   // border: 1px solid red;
   display: inline-block;
+}
+
+#design-container {
+  margin: auto;
+  margin-top: 10%;
+  width: 70%;
+  height: 80%;
+  border: 2px solid $feature-color;
+  background-color: $secondary-color;
+  button {
+    margin-top: 30%;
+  }
+}
+
+#message {
+  margin: auto;
+  color: white;
+  text-align: center;
 }
 
 .card {
@@ -156,7 +183,7 @@ main {
 
 #planter {
   // border: 1px solid red;
-  width: 28%;
+  width: 30%;
   margin-right: 0;
   margin-left: auto;
   display: inline-block;
