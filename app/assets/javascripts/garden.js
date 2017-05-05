@@ -432,7 +432,7 @@ $(document).ready(function(){
 
     createBrick(img_src, name, brick_id);
 
-    // $('.collapsible').collapsible('open', 3);
+    $('.collapsible').collapsible('open', 3);
 
   })
 
