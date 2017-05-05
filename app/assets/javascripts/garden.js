@@ -334,7 +334,7 @@ $(document).ready(function(){
 
   $("#start-button").on("click", function(){
 
-    $('.collapsible').collapsible('open', 0); // close current tab to open the next tab
+    // $('.collapsible').collapsible('open', 0); // close current tab to open the next tab
 
   })
 
@@ -355,7 +355,7 @@ $(document).ready(function(){
     $("#height").val("");
     $("#width").val("");
     $("#design-container").remove();
-    // $('.collapsible').collapsible('open', 1); // close current tab to open the next tab
+    $('.collapsible').collapsible('open', 1); // close current tab to open the next tab
 
     if ($gardenId){
       var newDimension = createDimension(width, height);
@@ -411,7 +411,7 @@ $(document).ready(function(){
 
     $("#plant-name").val(""); // clear the search input field
     $('#plant-details table').html(""); // clear the results table before entering new search results
-    // $('.collapsible').collapsible('open', 2);
+    $('.collapsible').collapsible('open', 2);
 
   });
 
