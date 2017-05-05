@@ -185,6 +185,9 @@ var drawCanvas = function(w, h){
   canvas.style.height = newHeight + "px";
   context.fillStyle = "#c5e1a5";
   context.fillRect(0, 0, newWidth, newHeight);
+  context.font = "3em Roboto";
+  context.fillStyle = "#FFFFFF";
+  context.fillText("Drag and drop your plants here", 10, 50);
 }
 
 var createDimension = function(w, h) {
@@ -353,10 +356,6 @@ $(document).ready(function(){
 
       var newCanvas = drawCanvas(width, height);
 
-      // $canvas = $("#canvas") ;
-      // $message = $('<div>').html("<h5>Drop your plants here</h5>").attr("id", "message");
-      // $canvas.append($message);
-
       $("canvas").droppable({ // make canvas a droppable area
         accept: '.draggable',
         drop: function(event, ui ) {
@@ -372,7 +371,7 @@ $(document).ready(function(){
         left: left,
         ratio: ratio
       };
-      return updateGarden(gardenInfo);
+      updateGarden(gardenInfo);
 
     } else {
 
@@ -389,8 +388,13 @@ $(document).ready(function(){
         left: left,
         ratio: ratio
       };
-      return saveGarden(gardenInfo);
+      saveGarden(gardenInfo);
     }
+
+    // $gardenPlan = $("#garden-plan") ;
+    // $("#message").attr("display", "inline");
+    // $gardenPlan.append($message);
+
   });
 
   // get search results from api
