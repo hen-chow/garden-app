@@ -103,15 +103,29 @@ $feature-color: color("grey", "lighten-3");
   -ms-transform: translate(-50%, -50%);
 }
 
+.fa-leaf {
+  padding-right: 15px;
+}
+
+.headline {
+  width: 100%;
+
+}
+
+#dimension {
+  width: 100%;
+}
+
 #box {
   width: 100%;
+  min-height: 250px;
   height: auto;
   padding: 20px;
   margin-right: 0;
   margin-left: auto;
   // float: right;
   right: 0;
-  // background-color: $secondary-color;
+  background-color: $secondary-color;
 }
 
 .brick_container{
