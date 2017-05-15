@@ -1,12 +1,12 @@
 # README
 
-#TITLE: Garden Party (Customised your garden design web application)
+#TITLE: Garden Wizard (Customised your garden design web application)
 
 # Live Demo:
-[link for Garden Party App]https://pacific-peak-96393.herokuapp.com/
+[link for Garden Wizard App]https://pacific-peak-96393.herokuapp.com/
 
 # Overview
-"Garden Party" is a web application which allows users design their own garden layout and plan. Users can specify the size of their backyard to customise the layout, and plan their plant placement accordingly. Plants are found through a search function, which provides not only common names of the plant, but also its sun requirements, height, row spacing and width specs to further assist the user's garden planning process. Finally, a handy drag and drop functionality allows the user to drag and drop the plant wherever they please within the garden plan layout.
+"Garden Wizard" is a web application which allows users design their own garden layout and plan. Users can specify the size of their backyard to customise the layout, and plan their plant placement accordingly. Plants are found through a search function, which provides not only common names of the plant, but also its sun requirements, height, row spacing and width specs to further assist the user's garden planning process. Finally, a handy drag and drop functionality allows the user to drag and drop the plant wherever they please within the garden plan layout.
 
 ## User profile summary
 When customers create an online account - a personalised profile account is created. Customers without a user account are able to still play with the garden planning functions, but the plan will not be saved for future use.
