@@ -1,6 +1,6 @@
 # README
 
-#TITLE: Garden Wizard (Customised your garden design web application)
+#TITLE: Garden Wizard (Customise your garden design web application)
 
 # Live Demo:
 [link for Garden Wizard App]https://pacific-peak-96393.herokuapp.com/
